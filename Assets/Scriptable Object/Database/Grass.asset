@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grass
   description: Weeds you got from the field
-  icon: {fileID: 0}
+  icon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   itemTypes: 0100000004000000

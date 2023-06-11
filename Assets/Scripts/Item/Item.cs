@@ -2,45 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+public class Item : MonoBehaviour
 {
-    Interactable,
-    Material,
-    Usable,
-    Wearable,
-    Eatable,
-    Sellable
-}
-
-[CreateAssetMenu(fileName = "Item", menuName = "Item")]
-public class Item : ScriptableObject, IEntity
-{
-    public string EntityName { get { return itemName; } set { itemName = value; } }
-    public string Description { get { return description; } set { description = value; } }
-    public Sprite Icon { get { return icon; }  set { icon = value; } }
+    [SerializeField]
+    private ItemDatabase itemDatabase;
 
     [SerializeField]
-    private string itemName;
+    private SpriteRenderer ItemIcon;
 
-    [SerializeField]
-    private string description;
+    private void Awake()
+    {
+        ItemIcon.sprite = itemDatabase.Icon;
+    }
 
-    [SerializeField]
-    private Sprite icon;
+    public bool IsInteractable { get { return itemDatabase.IsInteractable; } }
 
-    [SerializeField]
-    private List<ItemType> itemTypes;
-    
+    public bool IsMaterial { get { return itemDatabase.IsMaterial; } }
 
-    public bool IsInteractable { get { return itemTypes.Contains(ItemType.Interactable);  } }
+    public bool IsUsable { get { return itemDatabase.IsUsable; } }
 
-    public bool IsMaterial { get { return itemTypes.Contains(ItemType.Material); } }
+    public bool IsWearable { get { return itemDatabase.IsWearable; } }
 
-    public bool IsUsable { get { return itemTypes.Contains(ItemType.Usable); } }
+    public bool IsEatable { get { return itemDatabase.IsEatable; } }
 
-    public bool IsWearable { get { return itemTypes.Contains(ItemType.Wearable); } }
-
-    public bool IsEatable { get { return itemTypes.Contains(ItemType.Eatable); } }
-
-    public bool IsSellable { get { return itemTypes.Contains(ItemType.Sellable); } }
+    public bool IsSellable { get { return itemDatabase.IsSellable; } }
 }
